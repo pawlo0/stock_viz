@@ -1,5 +1,5 @@
 <head>
-  <title>song_data_viz</title>
+  <title>stock_viz</title>
   <script src="vis.js"></script>
 </head>
 
@@ -13,7 +13,7 @@
   <div class="row">
   	<div class="col-md-6">
   			{{>stock_viz_controls}}
-  			song_feature_list
+  			{{>stock_fundamentals_list}}
   	</div>
   	<div class="col-md-6">
   			song_vizjs
@@ -26,12 +26,39 @@
 		<!-- list of available single features -->
 		Compare fundamental data:
 		<br/>
-		<select class="js-select-single-feature">
-			{{#each get_feature_names}}
+		<select class="js-select-single-fundamental">
+			{{#each get_fundamental_names}}
 			  <option value="{{name}}">{{name}}</option>
 			{{/each}}
 		</select>
 		<button class="btn js-show-blobs">blobs</button>
 		<button class="btn js-show-timeline">timeline</button>
 	</form>
-</template>	
+</template>
+
+<template name="stock_fundamentals_list">
+	<div class="row">
+		<div class="col-xs-2">
+			<h4>Ticker symbol</h4>
+		</div>
+		<div class="col-xs-6">
+			<h4>Company name</h4>
+		</div>
+		<div class="col-xs-4">
+			<h4>{{study}}</h4>
+		</div>
+	</div>
+	{{#each get_fundamental_values}}
+		<div class="row">
+		  <div class="col-xs-2">
+		    {{symbol}}
+		  </div>
+		  <div class="col-xs-6">
+		    {{name}}
+		  </div>
+		  <div class="col-xs-4">
+		    {{value}}
+		  </div>
+		</div>
+	{{/each}}
+</template>

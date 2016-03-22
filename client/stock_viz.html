@@ -1,0 +1,37 @@
+<head>
+  <title>song_data_viz</title>
+  <script src="vis.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    {{> stock_viz}}
+  </div>	
+</body>
+
+<template name="stock_viz">
+  <div class="row">
+  	<div class="col-md-6">
+  			{{>stock_viz_controls}}
+  			song_feature_list
+  	</div>
+  	<div class="col-md-6">
+  			song_vizjs
+  	</div>
+  </div>
+</template>
+
+<template name="stock_viz_controls">
+	<form>
+		<!-- list of available single features -->
+		Compare fundamental data:
+		<br/>
+		<select class="js-select-single-feature">
+			{{#each get_feature_names}}
+			  <option value="{{name}}">{{name}}</option>
+			{{/each}}
+		</select>
+		<button class="btn js-show-blobs">blobs</button>
+		<button class="btn js-show-timeline">timeline</button>
+	</form>
+</template>	

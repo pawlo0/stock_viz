@@ -93,18 +93,43 @@ function initBlobVis(){
     var search = 'fundamentals.'+ Session.get("study");
     var stocks = Stocks.find({
         [search]: {$type: 1}});
-    var list = [];
-    
+    var list = [{
+        id: 0,
+        label: "All CCC",
+        level: 1
+    }];
+    var edges = [];
+    var sectorIndex = 0;
+    var sectorList = {};
     stocks.forEach(function(stock){
+        var sector = stock["Sector"];
+        if (sectorList[sector] == undefined) {
+            sectorIndex++;
+            sectorList[sector] = sectorIndex;
+            list.push({
+                id: sectorList[sector],
+                label: sector,
+                group: sector,
+                level: 2
+            });
+            edges.push({
+                from: 0,
+                to: sectorList[sector]
+            });
+        }
         list.push({
+            id: stock._id,
             label: stock["Company name"],
-            value: Math.round(stock.fundamentals[Session.get("study")]* 100) / 100
+            group: sector,
+            value: Math.round(stock.fundamentals[Session.get("study")]* 100) / 100,
+            level: 3
+        });
+        edges.push({
+            from: sectorList[sector],
+            to: stock._id
         });
     });
-        
-    // edges are used to connect nodes together. 
-    // we don't need these for now...
-    var edges =[];
+
     // this data will be used to create the visualisation
     var data = {
       nodes: list,
@@ -112,9 +137,14 @@ function initBlobVis(){
     };
     // options for the visualisation
      var options = {
-      nodes: {
-        shape: 'dot',
-      }
+        layout: {
+            hierarchical: {enabled:true}
+        },
+        nodes: {
+            borderWidth: 1,
+            borderWidthSelected: 2,            
+            shape: 'dot',
+        }
     };
     // get the div from the dom that we'll put the visualisation into
     var container = document.getElementById('visjs');

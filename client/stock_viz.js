@@ -34,7 +34,14 @@ Template.stock_fundamentals_list.helpers({
         if (Session.get("study") == undefined){
             Session.set("study", $(".js-select-single-fundamental :selected").val());
         }
-        var stocks = Stocks.find();
+        
+        // Had to be careful not to pass values that are not numbers because sometimes we get values like "n/a"
+        // If so, it would mess the data, so I decided to filter the data.
+        // The way to do that was through filtering the mongo query to only retrieve double numbers (same as $type:1)
+        // On top of that, we're searching in a nesting object, so I had to prepare a string.
+        var search = 'fundamentals.'+ Session.get("study");
+        var stocks = Stocks.find({
+            [search]: {$type: 1}});
         var list = [];
         // build an array of data on the fly for the 
         // template consisting of 'feature' objects

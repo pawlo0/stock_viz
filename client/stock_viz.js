@@ -20,45 +20,72 @@ Template.stock_viz_controls.helpers({
         }
         
         if (stock){
-            var feat_list = [], selected = "";
-            for ( var f in stock.fundamentals) {
-                if (Session.get("study") == f) {
-                    selected = "selected";
-                } else {
-                    selected = "";
-                }
-                feat_list.push({name: f, isSelected: selected});
+            var list = [];
+            for (var f in stock.fundamentals) {
+                list.push({name: f});
             }
         }
-        return feat_list;
+        return list;
+        
     },
     "get_groups": function(){
         if (Session.get("group") == undefined){
             Session.set("group", "Sector");
         }
-        var groups = [
-            {group: "Sector"},
-            {group: "Industry"}
-            ];
+        var groups = [];
+        if (Session.get("group") == "Sector"){
+            groups = [
+                {group: "Sector", isSelected: "selected"},
+                {group: "Industry", isSelected: ""}
+                ];
+        } else {
+            groups = [
+                {group: "Sector", isSelected: ""},
+                {group: "Industry", isSelected: "selected"}
+                ];            
+        }
+        
         return groups;
     }
 });
 
 
 ////////////////////////////
+///// helper functions for grouping the stocks
+////////////////////////////
+
+Template.stock_groups.helpers({
+    "get_groups": function(){
+        
+        // First lets get the groups
+        var groups = [], result = [];
+        Stocks.find().forEach(function(stock){
+            var group = stock[Session.get("group")];
+            if (groups.indexOf(group) == -1) {
+                groups.push(group);
+                result.push({group_name: group, group_name2: group.replace(/\/|\s|&|\W/g, "")});
+            }
+        });
+        return result;
+    }
+});
+
+////////////////////////////
 ///// helper functions for the stocks fundamentals list display template
 ////////////////////////////
 
 Template.stock_fundamentals_list.helpers({
-    "get_fundamental_values":function(){
+    "get_fundamental_values":function(group_name){
 
         // Had to be careful not to pass values that are not numbers because sometimes we get values like "n/a"
         // If so, it would mess the data, so I decided to filter the data.
         // The way to do that was through filtering the mongo query to only retrieve double numbers (same as $type:1)
-        // On top of that, we're searching in a nesting object, so I had to prepare a string.
-        var search = 'fundamentals.'+ Session.get("study");
+        // On top of that, we're searching in a nesting object, so I had to prepare a string called search_study.
+        var search_group = Session.get("group");
+        var search_study = 'fundamentals.'+ Session.get("study");
         var stocks = Stocks.find({
-            [search]: {$type: 1}});
+            [search_group]: group_name,
+            [search_study]: {$type: 1}});
         var list = [];
         // build an array of data on the fly for the 
         // template consisting of 'feature' objects
@@ -79,6 +106,7 @@ Template.stock_fundamentals_list.helpers({
         return Session.get("study");
     }
 });
+
 
 ////////////////////////////
 ///// event handlers for the viz controls form

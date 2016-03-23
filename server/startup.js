@@ -98,7 +98,6 @@ function insertDB(workSheet) {
                 "Ticker symbol": workSheet['B'+row].v,
                 "Industry": workSheet['C'+row].v,
                 "Sector": workSheet['CB'+row].v,
-                "Dividend Reinvestment Plan?": check_cell(workSheet['F'+row]),
                 "Quote": workSheet['H'+row].v,
                 "Actual quartely rate": workSheet['K'+row].v,
                 "Annual dividend rate": workSheet['R'+row].v,

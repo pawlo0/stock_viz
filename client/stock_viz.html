@@ -13,7 +13,7 @@
   <div class="row">
   	<div class="col-md-6">
   			{{>stock_viz_controls}}
-  			{{>stock_fundamentals_list}}
+  			{{>stock_groups}}
   	</div>
   	<div class="col-md-6">
   			{{>stock_vizjs}}
@@ -28,33 +28,55 @@
 		<br/>
 		<select class="js-select-single-fundamental">
 			{{#each get_fundamental_names}}
-			  <option value="{{name}}" {{isSelected}}>{{name}}</option>
+			  <option value="{{name}}" id="{{name}}">{{name}}</option>
 			{{/each}}
 		</select>
 		<select class="js-select-grouping">
 			{{#each get_groups}}
-			<option value={{group}}>By {{group}}</option>
+			<option value="{{group}}" id="{{group}}">By {{group}}</option>
 			{{/each}}
 		</select>
-		
+		{{selects}}
 		<button class="btn js-show-blobs">blobs</button>
 		<button class="btn js-show-timeline">timeline</button>
 	</form>
 </template>
 
+<template name="stock_groups">
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		{{#each get_groups}}
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="heading-{{group_name2}}">
+				  <h4 class="panel-title">
+				    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{group_name2}}" aria-expanded="false" aria-controls="collapse-{{group_name2}}">
+				      {{group_name}}
+				    </a>
+				  </h4>
+				</div>
+				<div id="collapse-{{group_name2}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{group_name2}}">
+				  <div class="panel-body">
+				    {{> stock_fundamentals_list group_name=group_name}}
+				  </div>
+				</div>
+			</div>		
+		{{/each}}
+	</div>
+</template>
+
 <template name="stock_fundamentals_list">
 	<div class="row">
 		<div class="col-xs-2">
-			<h4>Ticker symbol</h4>
+			<h5>Ticker symbol</h5>
 		</div>
 		<div class="col-xs-6">
-			<h4>Company name</h4>
+			<h5>Company name</h5>
 		</div>
 		<div class="col-xs-4">
-			<h4>{{study}}</h4>
+			<h5>{{study}}</h5>
 		</div>
 	</div>
-	{{#each get_fundamental_values}}
+	<hr>
+	{{#each get_fundamental_values group_name}}
 		<div class="row">
 		  <div class="col-xs-2">
 		    {{symbol}}

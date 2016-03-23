@@ -28,9 +28,15 @@
 		<br/>
 		<select class="js-select-single-fundamental">
 			{{#each get_fundamental_names}}
-			  <option value="{{name}}">{{name}}</option>
+			  <option value="{{name}}" {{isSelected}}>{{name}}</option>
 			{{/each}}
 		</select>
+		<select class="js-select-grouping">
+			{{#each get_groups}}
+			<option value={{group}}>By {{group}}</option>
+			{{/each}}
+		</select>
+		
 		<button class="btn js-show-blobs">blobs</button>
 		<button class="btn js-show-timeline">timeline</button>
 	</form>

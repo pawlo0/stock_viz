@@ -16,7 +16,7 @@
   			{{>stock_fundamentals_list}}
   	</div>
   	<div class="col-md-6">
-  			song_vizjs
+  			{{>stock_vizjs}}
   	</div>
   </div>
 </template>
@@ -61,4 +61,8 @@
 		  </div>
 		</div>
 	{{/each}}
+</template>
+
+<template name="stock_vizjs">
+	<div id="visjs"></div>
 </template>

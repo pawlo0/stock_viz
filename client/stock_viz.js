@@ -1,7 +1,7 @@
 /* global Stocks */
 
 Meteor.subscribe("stocks");
-
+var visjsobj;
 
 ////////////////////////////
 ///// helper functions for the vis control form
@@ -73,5 +73,51 @@ Template.stock_viz_controls.events({
     "change .js-select-single-fundamental":function(event){
         Session.set("study", event.target.value);
         event.preventDefault();
-    }
+    },
+    // event handler for when the user clicks on the 
+    // blobs button
+     "click .js-show-blobs":function(event){
+      initBlobVis();
+      event.preventDefault();
+    },     
 }); 
+
+
+
+// function that creates a new blobby visualisation
+function initBlobVis(){
+    // clear out the old visualisation if needed
+    if (visjsobj != undefined){
+        visjsobj.destroy();
+    }
+    var search = 'fundamentals.'+ Session.get("study");
+    var stocks = Stocks.find({
+        [search]: {$type: 1}});
+    var list = [];
+    
+    stocks.forEach(function(stock){
+        list.push({
+            label: stock["Company name"],
+            value: Math.round(stock.fundamentals[Session.get("study")]* 100) / 100
+        });
+    });
+        
+    // edges are used to connect nodes together. 
+    // we don't need these for now...
+    var edges =[];
+    // this data will be used to create the visualisation
+    var data = {
+      nodes: list,
+      edges: edges
+    };
+    // options for the visualisation
+     var options = {
+      nodes: {
+        shape: 'dot',
+      }
+    };
+    // get the div from the dom that we'll put the visualisation into
+    var container = document.getElementById('visjs');
+    // create the visualisation
+    visjsobj = new vis.Network(container, data, options);
+}

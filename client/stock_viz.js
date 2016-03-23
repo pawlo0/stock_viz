@@ -151,30 +151,30 @@ function initBlobVis(){
     var sectorIndex = 0;
     var sectorList = {};
     stocks.forEach(function(stock){
-        var sector = stock["Sector"];
-        if (sectorList[sector] == undefined) {
+        var group = stock[Session.get("group")];
+        if (sectorList[group] == undefined) {
             sectorIndex++;
-            sectorList[sector] = sectorIndex;
+            sectorList[group] = sectorIndex;
             list.push({
-                id: sectorList[sector],
-                label: sector,
-                group: sector,
+                id: sectorList[group],
+                label: group,
+                group: group,
                 level: 2
             });
             edges.push({
                 from: 0,
-                to: sectorList[sector]
+                to: sectorList[group]
             });
         }
         list.push({
             id: stock._id,
             label: stock["Company name"],
-            group: sector,
+            group: group,
             value: Math.round(stock.fundamentals[Session.get("study")]* 100) / 100,
             level: 3
         });
         edges.push({
-            from: sectorList[sector],
+            from: sectorList[group],
             to: stock._id
         });
     });

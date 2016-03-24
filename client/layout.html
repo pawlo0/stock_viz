@@ -3,15 +3,15 @@
   <script src="vis.js"></script>
 </head>
 
-<body data-spy="scroll" data-target="#navbar-collapse">
+<body data-spy="scroll" data-target="#navbar-collapse" data-offset="80">
   {{>navbar}}
-  <div class="container" id="top">
+  <div class="container fill" id="top">
     {{> layout}}
   </div>	
 </body>
 
 <template name="layout">
-  <div class="row" id="network">
+  <div class="row fill" id="network">
   	<h3>Select data for the Network drawing</h3>
   	<div class="col-md-4">
   			{{>stock_viz_controls}}
@@ -22,7 +22,7 @@
   	</div>
   </div>
   <hr>
-  <div class="row" id="3dgraph">
+  <div class="row fill" id="3dgraph">
   	<h3>Select data for the 3d graph</h3>
   	<div class="col-md-4">
   		{{>stock_viz_3d_controls}}
@@ -32,7 +32,7 @@
   	</div>
   </div>
   <hr>
-  <div class="row" id="individual">
+  <div class="row fill" id="individual">
     <h3>Select individual stock to analize</h3>
     <div class="col-md-6">
       {{>one_stock_controls}}

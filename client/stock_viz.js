@@ -128,7 +128,11 @@ Template.stock_viz_controls.events({
      "click .js-show-blobs":function(event){
       initBlobVis();
       event.preventDefault();
-    },     
+    },
+     "click .js-show-timeline":function(event){
+      drawVisualization();
+      event.preventDefault();
+    }    
 }); 
 
 
@@ -200,3 +204,5 @@ function initBlobVis(){
     // create the visualisation
     visjsobj = new vis.Network(container, data, options);
 }
+
+

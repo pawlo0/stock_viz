@@ -19,8 +19,55 @@
   			{{>stock_vizjs}}
   	</div>
   </div>
+  <div class="row">
+  	<div class="col-md-4">
+  		{{>stock_viz_3d_controls}}
+  	</div>
+  	<div class="col-md-8">
+  		{{>stock_viz3d}}
+  	</div>
+  </div>
 </template>
 
+<template name="stock_viz_3d_controls">
+	<h3>Select data for the 3d graph</h3>
+	<form>
+		X-Axis:
+		<select class="form-control js-select-x-3d-data">
+			{{#each get_data_for_3d "x_axis"}}
+			  <option value="{{name}}" {{isSelected}}>{{name}}</option>
+			{{/each}}
+		</select>
+		<br/>
+		Y-Axis:
+		<select class="form-control js-select-y-3d-data">
+			{{#each get_data_for_3d "y_axis"}}
+			  <option value="{{name}}" {{isSelected}}>{{name}}</option>
+			{{/each}}
+		</select>
+		<br/>
+		Z-Axis:
+		<select class="form-control js-select-z-3d-data">
+			{{#each get_data_for_3d "z_axis"}}
+			  <option value="{{name}}" {{isSelected}}>{{name}}</option>
+			{{/each}}
+		</select>
+		<br/>	
+		Dots size:
+		<select class="form-control js-select-zvalue-3d-data">
+			{{#each get_data_for_3d "z_value"}}
+			  <option value="{{name}}" {{isSelected}}>{{name}}</option>
+			{{/each}}
+		</select>
+		<br/>
+		<button class="btn btn-default js-show-3d">Draw 3d Graph</button>
+	</form>
+</template>
+
+<template name="stock_viz3d">
+	<div id="visjs3d"></div>	
+</template>
+	
 <template name="stock_viz_controls">
 	<form>
 		<!-- list of available single features -->
@@ -38,7 +85,6 @@
 		</select>
 		{{selects}}
 		<button class="btn js-show-blobs">Network view</button>
-		<button class="btn js-show-timeline">timeline</button>
 	</form>
 </template>
 

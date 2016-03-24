@@ -3,14 +3,15 @@
   <script src="vis.js"></script>
 </head>
 
-<body>
-  <div class="container">
+<body data-spy="scroll" data-target="#navbar-collapse">
+  {{>navbar}}
+  <div class="container" id="top">
     {{> layout}}
   </div>	
 </body>
 
 <template name="layout">
-  <div class="row">
+  <div class="row" id="network">
   	<h3>Select data for the Network drawing</h3>
   	<div class="col-md-4">
   			{{>stock_viz_controls}}

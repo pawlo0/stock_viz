@@ -1,5 +1,9 @@
 /* CSS declarations go here */
 
+body {
+	padding-top: 70px;
+}
+
 #visjs{
 	height:600px;
 }

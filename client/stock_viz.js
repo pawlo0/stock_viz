@@ -16,13 +16,17 @@ Template.stock_viz_controls.helpers({
         // - we'll use this to find the names of all features
         var stock = Stocks.findOne();
         if (Session.get("study") == undefined){
-            Session.set("study", Object.keys(stock.fundamentals)[0]);
+            Session.set("study", "Consecutive dividend years");
         }
         
         if (stock){
             var list = [];
             for (var f in stock.fundamentals) {
-                list.push({name: f});
+                var isSelected = "";
+                if (Session.get("study") == f) {
+                    isSelected = "selected";
+                }
+                list.push({name: f, isSelected: isSelected});
             }
         }
         return list;

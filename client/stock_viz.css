@@ -1,7 +1,7 @@
 /* CSS declarations go here */
 
 #visjs{
-	height:500px;
+	height:600px;
 }
 .vis-label{
 	fill-opacity:0;
@@ -9,4 +9,8 @@
 
 .vis-label:hover{
 	fill-opacity:1;
+}
+
+#visjs3d {
+	height: 600px;
 }

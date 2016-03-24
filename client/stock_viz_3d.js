@@ -92,7 +92,7 @@ function drawVisualization() {
     // specify options
     var options = {
         width:  '100%',
-        height: '600px',
+        height: '100%',
         style: 'dot-size',
         keepAspectRatio: false,
         xLabel: Session.get("x_axis"),

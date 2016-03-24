@@ -1,0 +1,33 @@
+<head>
+  <title>DRIP Stocks Viz</title>
+  <script src="vis.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    {{> layout}}
+  </div>	
+</body>
+
+<template name="layout">
+  <div class="row">
+  	<h3>Select data for the Network drawing</h3>
+  	<div class="col-md-4">
+  			{{>stock_viz_controls}}
+  			{{>stock_groups}}
+  	</div>
+  	<div class="col-md-8">
+  			{{>stock_vizjs}}
+  	</div>
+  </div>
+  <hr>
+  <div class="row" id="3dgraph">
+  	<h3>Select data for the 3d graph</h3>
+  	<div class="col-md-4">
+  		{{>stock_viz_3d_controls}}
+  	</div>
+  	<div class="col-md-8">
+  		{{>stock_viz3d}}
+  	</div>
+  </div>
+</template>

@@ -1,94 +1,34 @@
-<head>
-  <title>stock_viz</title>
-  <script src="vis.js"></script>
-</head>
-
-<body>
-  <div class="container">
-    {{> stock_viz}}
-  </div>	
-</body>
-
-<template name="stock_viz">
-  <div class="row">
-  	<div class="col-md-6">
-  			{{>stock_viz_controls}}
-  			{{>stock_groups}}
-  	</div>
-  	<div class="col-md-6">
-  			{{>stock_vizjs}}
-  	</div>
-  </div>
-  <div class="row">
-  	<div class="col-md-4">
-  		{{>stock_viz_3d_controls}}
-  	</div>
-  	<div class="col-md-8">
-  		{{>stock_viz3d}}
-  	</div>
-  </div>
-</template>
-
-<template name="stock_viz_3d_controls">
-	<h3>Select data for the 3d graph</h3>
-	<form>
-		X-Axis:
-		<select class="form-control js-select-x-3d-data">
-			{{#each get_data_for_3d "x_axis"}}
-			  <option value="{{name}}" {{isSelected}}>{{name}}</option>
-			{{/each}}
-		</select>
-		<br/>
-		Y-Axis:
-		<select class="form-control js-select-y-3d-data">
-			{{#each get_data_for_3d "y_axis"}}
-			  <option value="{{name}}" {{isSelected}}>{{name}}</option>
-			{{/each}}
-		</select>
-		<br/>
-		Z-Axis:
-		<select class="form-control js-select-z-3d-data">
-			{{#each get_data_for_3d "z_axis"}}
-			  <option value="{{name}}" {{isSelected}}>{{name}}</option>
-			{{/each}}
-		</select>
-		<br/>	
-		Dots size:
-		<select class="form-control js-select-zvalue-3d-data">
-			{{#each get_data_for_3d "z_value"}}
-			  <option value="{{name}}" {{isSelected}}>{{name}}</option>
-			{{/each}}
-		</select>
-		<br/>
-		<button class="btn btn-default js-show-3d">Draw 3d Graph</button>
-	</form>
-</template>
-
-<template name="stock_viz3d">
-	<div id="visjs3d"></div>	
-</template>
-	
 <template name="stock_viz_controls">
-	<form>
-		<!-- list of available single features -->
-		Compare fundamental data:
-		<br/>
-		<select class="js-select-single-fundamental">
-			{{#each get_fundamental_names}}
-			  <option value="{{name}}" id="{{name}}">{{name}}</option>
-			{{/each}}
-		</select>
-		<select class="js-select-grouping">
-			{{#each get_groups}}
-			<option value="{{group}}" id="{{group}}">By {{group}}</option>
-			{{/each}}
-		</select>
-		{{selects}}
-		<button class="btn js-show-blobs">Network view</button>
-	</form>
+	<div class="row">
+		<div class="col-md-8">
+			<form>
+				<!-- list of available single features -->
+				Fundamental data:
+				<select class="form-control js-select-single-fundamental">
+					{{#each get_fundamental_names}}
+					  <option value="{{name}}" {{isSelected}}>{{name}}</option>
+					{{/each}}
+				</select>
+				<br/>
+				Grouped by:
+				<select class="form-control js-select-grouping">
+					{{#each get_groups}}
+					<option value="{{group}}" {{isSelected}}>{{group}}</option>
+					{{/each}}
+				</select>
+			</form>
+		</div>
+		<div class="col-md-4">
+			<br/>
+			<button class="btn btn-defaul js-show-blobs">Draw Network</button>
+		</div>
+	</div>
+	<br/>
 </template>
 
 <template name="stock_groups">
+	<h4>List of stocks:</h4>
+	<small>Choose one group in order to expand it and see list of stocks</small>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 		{{#each get_groups}}
 			<div class="panel panel-default">

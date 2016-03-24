@@ -136,6 +136,16 @@ Template.stock_viz_controls.events({
 }); 
 
 
+Template.stock_fundamentals_list.events({
+    "click .js-select-stock": function(event){
+        Session.set("stock", this.symbol);
+        $('html, body').animate({
+            scrollTop: $('#individual').offset().top - 70
+        }, 500);
+        return false; 
+    }
+});
+
 
 // function that creates a new blobby visualisation
 function initBlobVis(){

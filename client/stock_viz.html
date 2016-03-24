@@ -28,7 +28,8 @@
 
 <template name="stock_groups">
 	<h4>List of stocks:</h4>
-	<small>Choose one group in order to expand it and see list of stocks</small>
+	<small>Choose one group in order to expand it and see list of stocks.</small>
+	<small>Then choose one stock to see the details of it.</small>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 		{{#each get_groups}}
 			<div class="panel panel-default">
@@ -65,10 +66,10 @@
 	{{#each get_fundamental_values group_name}}
 		<div class="row">
 		  <div class="col-xs-2">
-		    {{symbol}}
+		    <a href="#" class="js-select-stock" value="{{symbol}}">{{symbol}}</a>
 		  </div>
 		  <div class="col-xs-7">
-		    {{name}}
+		    <a href="#" class="js-select-stock" value="{{symbol}}">{{name}}</a>
 		  </div>
 		  <div class="col-xs-3">
 		    {{value}}

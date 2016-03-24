@@ -132,11 +132,7 @@ Template.stock_viz_controls.events({
      "click .js-show-blobs":function(event){
       initBlobVis();
       event.preventDefault();
-    },
-     "click .js-show-timeline":function(event){
-      drawVisualization();
-      event.preventDefault();
-    }    
+    }
 }); 
 
 

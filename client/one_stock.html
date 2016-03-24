@@ -1,0 +1,56 @@
+<template name="one_stock_controls">
+    <div class="row">
+        <div class="col-md-8">
+            <form>
+                Stock:
+                <select class="form-control js-select-single">
+                    {{#each get_stock_list}}
+                        <option value="{{ticker}}" {{isSelected}}>{{name}}</option>
+                    {{/each}}
+                </select>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <br/>
+            <button class="btn btn-default js-show-timeline">Dividends timeline</button>
+        </div>
+    </div>
+    <br/>
+    {{#with stock_info}}
+    <div class="row">
+        <div class="col-md-12">
+            <h4>{{name}} - {{ticker}}</h4>
+            <p>Consecutive years without decreasing dividend: <strong>{{years}}</strong></p>
+            <p>Dividend Yield (%): <strong>{{div_yield}}</strong></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Recent quartely increase (%): {{increase}}</p>
+            <p>Payout ratio (%): {{payout}}</p>            
+            <p>Actual quartely rate: {{qtly_rate}}</p>
+            <p>Actual annual rate: {{annual_rate}}</p>
+            <p>Ex-div date: {{ex_div}}</p>
+            <p>Record date: {{record}}</p>
+            <p>Pay date: {{pay}}</p>
+            <p>Market cap: {{marketcap}}</p>
+            <p>Beta: {{beta}}</p>
+        </div>
+        <div class="col-md-6">
+            <p>Sector: {{sector}}</p>
+            <p>Industry: {{industry}}</p>            
+            <p>Price to earnings: {{p_e}}</p>
+            <p>Earnings per share: {{earnings}}</p>
+            <p>Debt to equity: {{debt}}</p>
+            <p>Price to sales: {{sales}}</p>
+            <p>Price to book: {{book}}</p>
+            <p>ROE: {{roe}}</p>
+            <p>PEG ratio: {{peg}}</p>
+        </div>
+    </div>
+    {{/with}}
+</template>
+
+<template name="one_stock_graph">
+    <div id="visjsbar"></div>
+</template>

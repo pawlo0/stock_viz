@@ -64,7 +64,7 @@ Template.stock_viz_3d_controls.events({
 function drawVisualization() {
     // clear out the old visualisation if needed
     if (visjsobj3d != undefined){
-    visjsobj3d.destroy();
+    visjsobj3d.redraw();
     }
     // Trick to make sure wwe don't have data that is not a number:
     var search_x = 'fundamentals.'+ Session.get("x_axis");

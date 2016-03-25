@@ -1,71 +1,19 @@
-/* global FS, Files, Excel, Stocks */
+/* global Excel, Stocks */
 
-Files = new FS.Collection("files", {
-  stores: [new FS.Store.FileSystem("files", {path: basepath()+"private"})]
-});
-
-
-// Wrapped everything in a setInterval function in order to update the info every now and then.
-// Set to run this all function every 2 days.
-// In any case, it will download a nw file only if the one we have is 1 month old.
-Meteor.startup(startup);
-Meteor.setInterval(startup, 2*24*60*60*1000);
-
-var interval = Meteor.setInterval(parsing, 2000);
-
-function parsing(){
-    var excelfile = Files.findOne();
-    // Only run this code if a file has been stored.
-    if(excelfile && excelfile.hasStored("files")) {
-        var workbook = parseExcel(excelfile);
-        console.log("parsed excel file.");
-        
-        // I know before hand that we need the 4th sheet.
-        var workSheet = workbook.Sheets[workbook.SheetNames[3]];
+if (!Stocks.findOne()){
+    var excel = new Excel('xls');
+    var workbook = excel.readFile(basepath() + "public/U.S.DividendChampions.xls");
+    console.log("parsed excel file.");
+    
+    // I know before hand that we need the 4th sheet.
+    var workSheet = workbook.Sheets[workbook.SheetNames[3]];
         
         // Finally, we need to insert the relevant data into the Mongo database.
         // made a function called insertDB to deal with it.
         var insertResult = insertDB(workSheet);
         console.log(insertResult);
-        Meteor.clearInterval(interval);
-    }
 }
 
-
-
-//////////////////////////////////////
-// startup function
-// This function is to retrieve the excel file from the given url
-//////////////////////////////////////
-function startup(){
-    console.log("Testing if it needs to download the file...");
-
-    var url = "http://www.dripinvesting.org/tools/U.S.DividendChampions.xls";
-
-    // In order to fetch the file I need and store it in the server,
-    // it was necessary to add the CollectionFS package.
-    
-    // First lets see if we have already a file stored
-    var objFile = Files.findOne();
-
-    if (!objFile || objFile.updatedAt().getTime() < new Date() - 32*24*60*60*1000) {
-        
-        // if there is no file, or if the file is more than 1 month old, then insert/save a new file.
-        objFile = Files.insert(url, function(err, file) {
-            if (err) {
-                console.log("Didn't inserted. Error", err);
-            } else {
-                // We don't need more than 1 downloaded file.
-                // So, upon sucess inserting new file, all others will be deleted.
-                Files.remove({_id: {$ne: file._id}});
-                console.log("Download sucessed. Inserted: " + Files.findOne()._id);
-            }
-        });
-        return objFile;
-    } else {
-        console.log("And download was not necessary.");
-    }
-}
 
 
 ////////////////////////////////////////
@@ -166,39 +114,6 @@ function insertDB(workSheet) {
     return logResult;
 }
 
-
-
-////////////////////////////////////////////
-// parseExcel function
-// This function is to parse the downloaded file.
-// Had to add the netanelgilad:excel package.
-////////////////////////////////////////////
-function parseExcel(excelfile) {
-
-        var excel = new Excel('xls');
-        var workbook = excel.readFile(basepath() + "private/"+ excelfile.getCopyInfo("files").key);
-        console.log("Parsed: " + excelfile._id);
-        return workbook;
-}
-
-
-
-
-/////////////////////////////////////////////
-// check_cell function
-// This function is to deal with empty cells.
-// It is called in the insertDB function
-// If not, while inserting the file into the database,
-// it would produce errors by undefined variables,
-// caused by empty cells.
-function check_cell(cell) {
-    
-    if (cell == undefined) {
-        return " ";
-    } else {
-        return cell.v;
-    }
-}
 
 
 /////////////////////////////////////////////////////

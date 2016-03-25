@@ -25,7 +25,9 @@ The site can have any number of pages as long as there is a clear purpose for ea
 The main goal of this assignment was to take the provided code and use it with a different source and visualise it in different ways than the ones covered during video lessons using the [vis.js](http://visjs.org/) tool.
 
 
-As expected, the hard part of this assignment was to retrieve and manipulate data. I choose an excel file living in http://www.dripinvesting.org/tools/tools.asp. That implied using the collectionFS package and the netanelgilad:excel package to parse excel files. Must say it was a good practice for future needs on these packages.
+As expected, the hard part of this assignment was to retrieve and manipulate data. I choose an excel file found in http://www.dripinvesting.org/tools/tools.asp. That implied using the netanelgilad:excel package to parse excel files. Must say it was a good practice for future needs on these package.
+Side note, tried to use the collectionFS in order to download the filed automaticaly. But I was getting to many errors so decided to simplify, and put the file in public folder and work from there.
+In the future, with more time, I'll deal with the collectionFS.
 
 
 After that hard task, manipulating vis.js was not so hard, although it took me some time. Mainly because I kept changing my mind about the graphs, looks and interactivity that I would like to present. 

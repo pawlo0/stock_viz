@@ -3,11 +3,11 @@
 html, body {
 	padding-top: 70px;
 	position: relative;
+	height: 100%;
 }
 
 #visjs{
 	height:600px;
-	min-height: 100%;
 }
 .vis-label{
 	fill-opacity:0;
@@ -19,10 +19,26 @@ html, body {
 
 #visjs3d {
 	height: 600px;
-	min-height: 100%;
 }
 
 #visjsbar {
 	height: 600px;
-	min-height: 100%;
+}
+
+.fill { 
+    min-height: 100%;
+    height: 100%;
+}
+
+.master-head {
+	padding: 80px 80px;
+    background: #0fb8ad; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#0fb8ad, #1fc8db, #2cb5e8); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#0fb8ad, #1fc8db, #2cb5e8); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#0fb8ad, #1fc8db, #2cb5e8); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#0fb8ad, #1fc8db, #2cb5e8); /* Standard syntax */
+}
+
+.margin-top {
+	margin-top: 80px;
 }

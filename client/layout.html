@@ -12,8 +12,9 @@
 
 <template name="layout">
   <div class="row" id="network">
-  	<h3>Select data for the Network drawing</h3>
+    <h2>Network drawing</h2>
   	<div class="col-md-4">
+  	    {{>instructions_network}}
   			{{>stock_viz_controls}}
   			{{>stock_groups}}
   	</div>
@@ -23,8 +24,9 @@
   </div>
   <hr>
   <div class="row" id="3dgraph">
-  	<h3>Select data for the 3d graph</h3>
+  	<h2>3D Graph</h2>
   	<div class="col-md-4">
+  	  {{>instructions_3dgraph}}
   		{{>stock_viz_3d_controls}}
   	</div>
   	<div class="col-md-8">
@@ -33,8 +35,9 @@
   </div>
   <hr>
   <div class="row" id="individual">
-    <h3>Select individual stock to analize</h3>
+    <h2>Individual stock analysis</h2>
     <div class="col-md-6">
+      {{>instructions_indiv}}
       {{>one_stock_controls}}
     </div>
     <div class="col-md-6">

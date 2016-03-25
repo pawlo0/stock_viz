@@ -20,7 +20,7 @@
 		</div>
 		<div class="col-md-4">
 			<br/>
-			<button class="btn btn-defaul js-show-blobs">Draw Network</button>
+			<button class="btn btn-primary js-show-blobs">Draw Network</button>
 		</div>
 	</div>
 	<br/>
@@ -28,8 +28,6 @@
 
 <template name="stock_groups">
 	<h4>List of stocks:</h4>
-	<small>Choose one group in order to expand it and see list of stocks.</small>
-	<small>Then choose one stock to see the details of it.</small>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 		{{#each get_groups}}
 			<div class="panel panel-default">

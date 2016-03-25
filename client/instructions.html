@@ -1,0 +1,93 @@
+<template name="instructions_network">
+    <!-- Button trigger modal -->
+    <p><strong>Short Instructions:</strong> Click "Draw network".</p>
+    <a role="button" href="#" data-toggle="modal" data-target="#modal_network">
+      Or click here for longer instructions.
+    </a>
+    <p></p>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="modal_network" tabindex="-1" role="dialog" aria-labelledby="modalNetworkLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modalNetworkLabel">Instructions for the Network drawing feature.</h4>
+          </div>            
+          <div class="modal-body">
+            <h4>Interactivity:</h4>
+            <p>In the fundamental data dropdown, select the parameter you wish to analize.</p>
+          	<p>In the grouped by dropdown, select if you wish to see the stocks to be grouped by sector or by industry.</p>
+          	<p>Click in the "Draw Network" button, wait some seconds, and you'll have the network drawing.</p>
+          	<p>Stocks will be conneted, grouped by your selection.</p>
+          	<h4>List of stocks:</h4>
+          	<p>As parameters are selected, the list of stocks change.</p>
+	        <p>Choose one group in order to expand it and see list of stocks inside it.</p>
+	        <p>Then click one stock to see the details.</p>          	
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
+
+<template name="instructions_3dgraph">
+    <!-- Button trigger modal -->
+    <p><strong>Short Instructions:</strong> Click "Draw 3D Graph".</p>
+    <a role="button" href="#" data-toggle="modal" data-target="#modal_3d">
+      Or click here for longer instructions.
+    </a>
+    <p></p>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="modal_3d" tabindex="-1" role="dialog" aria-labelledby="modal3dLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modal3dLabel">Instructions for the 3D Graph feature.</h4>
+          </div>            
+          <div class="modal-body">
+            <h4>Interactivity:</h4>
+            <p>Choose the fundamental data you wish to analize for each axis of the graph.</p>
+            <p>Click in the "Draw 3D Graph" and wait some seconds.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
+
+<template name="instructions_indiv">
+    <!-- Button trigger modal -->
+    <p><strong>Short Instructions:</strong> Click "Dividends timeline".</p>
+    <a role="button" href="#" data-toggle="modal" data-target="#modal_indiv">
+      Or click here for longer instructions.
+    </a>
+    <p></p>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="modal_indiv" tabindex="-1" role="dialog" aria-labelledby="modalIndivLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modalIndivLabel">Instructions for the Individual analysis feature.</h4>
+          </div>            
+          <div class="modal-body">
+            <h4>Interactivity:</h4>
+            <p>Choose the stock you wish to study from the dropdown.</p>
+            <p>You can also go up, to the list of stocks grouped by sector or by industry, and select there the stock you wish to study.</p>
+            <p>Click in the "Dividends Timeline" button to see the annual dividends per year of the stock you're studing.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>

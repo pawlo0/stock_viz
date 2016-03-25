@@ -7,7 +7,6 @@ Files = new FS.Collection("files", {
 
 // Wrapped everything in a setInterval function in order to update the info every now and then.
 // Set to run this all function every 2 days.
-// In any case, it will download a nw file only if the one we have is 1 month old.
 Meteor.startup(startup);
 Meteor.setInterval(startup, 2*24*60*60*1000);
 
@@ -41,7 +40,7 @@ if (excelfile && excelfile.hasStored("files")) {
 // This function is to retrieve the excel file from the given url
 //////////////////////////////////////
 function startup(){
-    console.log("Testing if it needs to download the file...");
+    console.log("Downloading the file...");
 
     var url = "http://www.dripinvesting.org/tools/U.S.DividendChampions.xls";
 
@@ -49,25 +48,18 @@ function startup(){
     // it was necessary to add the CollectionFS package.
     
     // First lets see if we have already a file stored
-    var objFile = Files.findOne();
-
-    if (!objFile || objFile.updatedAt().getTime() < new Date() - 32*24*60*60*1000) {
-        
-        // if there is no file, or if the file is more than 1 month old, then insert/save a new file.
-        objFile = Files.insert(url, function(err, file) {
-            if (err) {
-                console.log("Didn't inserted. Error", err);
-            } else {
-                // We don't need more than 1 downloaded file.
-                // So, upon sucess inserting new file, all others will be deleted.
-                Files.remove({_id: {$ne: file._id}});
-                console.log("Download sucessed. Inserted: " + Files.findOne()._id);
-            }
-        });
-        return objFile;
-    } else {
-        console.log("And download was not necessary.");
-    }
+    var objFile = Files.insert(url, function(err, file) {
+        if (err) {
+            console.log("Didn't inserted. Error", err);
+        } else {
+            // We don't need more than 1 downloaded file.
+            // So, upon sucess inserting new file, all others will be deleted.
+            Files.remove({_id: {$ne: file._id}});
+            console.log("Download sucessed. Inserted: " + Files.findOne()._id);
+        }
+    });
+    
+    return objFile;
 }
 
 

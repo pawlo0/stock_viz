@@ -22,7 +22,7 @@ The site can have any number of pages as long as there is a clear purpose for ea
  
 ---
 
-The main goal of this assignment was to take the provided code and use it with a different source and visualise it in different ways than the ones covered during video lessons.
+The main goal of this assignment was to take the provided code and use it with a different source and visualise it in different ways than the ones covered during video lessons using the [vis.js](http://visjs.org/) tool.
 
 
 As expected, the hard part of this assignment was to retrieve and manipulate data. I choose an excel file living in http://www.dripinvesting.org/tools/tools.asp. That implied using the collectionFS package and the netanelgilad:excel package to parse excel files. Must say it was a good practice for future needs on these packages.

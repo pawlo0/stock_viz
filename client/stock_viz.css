@@ -3,7 +3,6 @@
 html, body {
 	padding-top: 70px;
 	position: relative;
-	height: 100%;
 }
 
 #visjs{
@@ -25,10 +24,6 @@ html, body {
 	height: 600px;
 }
 
-.fill { 
-    min-height: 100%;
-}
-
 .master-head {
 	padding: 80px 80px;
     background: #0fb8ad; /* For browsers that do not support gradients */
@@ -41,3 +36,4 @@ html, body {
 .margin-top {
 	margin-top: 80px;
 }
+

@@ -136,18 +136,6 @@ Template.stock_viz_controls.events({
 }); 
 
 
-Template.stock_groups.events({
-    "click .panel-title": function(event){
-        var initHeight = $('#network').height();
-        $('#accordion').on('shown.bs.collapse', function () {
-            $('#network').height(initHeight + $(".collapse.in").height());
-        });
-        $('#accordion').on('hide.bs.collapse', function () {
-            $('#network').height(initHeight - $(".collapse.in").height()+10);
-        });
-    }
-});
-
 Template.stock_fundamentals_list.events({
     "click .js-select-stock": function(event){
         Session.set("stock", this.symbol);

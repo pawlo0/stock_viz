@@ -9,25 +9,23 @@
 </body>
 
 <template name="layout">
-  <div class="fill">
-    <div class="container-fluid master-head" id="top">
-      <div class="container">
-        <h1>DRIP Stock Viz</h1>
-        <small>By: <a href="https://github.com/pawlo0">Paulo Santos</a></small>
-        <h3>Analysis app for DRIP Stocks listed in <a href="http://www.dripinvesting.org/">dripinvesting.org</a></h3>
-      </div>
-    </div>
+  <div class="container-fluid master-head" id="top">
     <div class="container">
-      <blockquote class="margin-top">
-        <p>A dividend reinvestment program or dividend reinvestment plan (DRIP) is an equity investment option offered directly from the underlying company. The investor does not receive quarterly dividends directly as cash; instead, the investor's dividends are directly reinvested in the underlying equity.</p>
-        <footer>From <a href="https://en.wikipedia.org/wiki/Dividend_reinvestment_plan">Wikipedia</a>.</footer>
-      </blockquote>
-      <h2 class="margin-top">Please select the study you would like to performe in the navigation bar or scroll down.</h2>
+      <h1>DRIP Stock Viz</h1>
+      <small>By: <a href="https://github.com/pawlo0">Paulo Santos</a></small>
+      <h3>Analysis app for DRIP Stocks listed in <a href="http://www.dripinvesting.org/">dripinvesting.org</a></h3>
     </div>
   </div>
+  <div class="container">
+    <blockquote class="margin-top">
+      <p>A dividend reinvestment program or dividend reinvestment plan (DRIP) is an equity investment option offered directly from the underlying company. The investor does not receive quarterly dividends directly as cash; instead, the investor's dividends are directly reinvested in the underlying equity.</p>
+      <footer>From <a href="https://en.wikipedia.org/wiki/Dividend_reinvestment_plan">Wikipedia</a>.</footer>
+    </blockquote>
+    <h2 class="margin-top">Please select the study you would like to performe in the navigation bar or scroll down.</h2>
+  </div>
   <hr>
-  <div class="container fill">
-    <div class="row fill" id="network">
+  <div class="container margin-top">
+    <div class="row" id="network">
       <h2>Network drawing</h2>
     	<div class="col-md-4">
     	    {{>instructions_network}}
@@ -39,7 +37,7 @@
     	</div>
     </div>
     <hr>
-    <div class="row fill" id="3dgraph">
+    <div class="row margin-top" id="3dgraph">
     	<h2>3D Graph</h2>
     	<div class="col-md-4">
     	  {{>instructions_3dgraph}}
@@ -50,7 +48,7 @@
     	</div>
     </div>
     <hr>
-    <div class="row fill" id="individual">
+    <div class="row margin-top" id="individual">
       <h2>Individual stock analysis</h2>
       <div class="col-md-6">
         {{>instructions_indiv}}
@@ -61,7 +59,7 @@
       </div>
     </div>
     <hr>
-    <div class="row fill" id="footer">
+    <div class="row margin-top" id="footer">
       {{> footer }}
     </div>
   </div>

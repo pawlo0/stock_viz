@@ -1,5 +1,6 @@
 # **DRIP Stocks Viz**
 
+Living in http://stocks-viz.herokuapp.com/
 
 # Peer review assigment
 ### Responsive Website Tutorial and Examples

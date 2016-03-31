@@ -14,6 +14,14 @@ Template.layout.onRendered(function(){
 });
 
 Template.layout.helpers({
+    "weHaveStocks": function(){
+       if (Stocks.findOne()){
+           return true;
+       } 
+    },
+    "updatedAt": function(){
+        return formatDate(Stocks.findOne().updatedAt);
+    },
     "checkData": function (e) {
         if (Files.findOne()){
             if (!Stocks.findOne() || new Date() - Stocks.findOne().updatedAt > 30*24*60*60*1000) {
@@ -64,3 +72,19 @@ Template.layout.helpers({
         }
     }
 })
+
+
+function formatDate(date){
+    var monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+    
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    var dateString = day + '/' + monthNames[monthIndex] + '/' + year;
+    return dateString;    
+}

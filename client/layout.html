@@ -25,9 +25,9 @@
     </div>
     
   </div>
-
   <hr>
   <div class="container ">
+    {{#if weHaveStocks }}
     <div class="row" id="network">
       <h2>Network drawing</h2>
     	<div class="col-md-4">
@@ -64,6 +64,12 @@
     <hr>
     <div class="row" id="footer">
       {{> footer }}
+      <div class="margin-top">
+        <p>All stocks data in this site is retrieved from <a href="http://www.dripinvesting.org/">dripinvesting.org</a> and was updated in {{updatedAt}}.</p> 
+      </div>
     </div>
+    {{else}}
+    <h2 class="margin-top">Sorry but we don't have (yet) stocks data...</h2>
+    {{/if}}    
   </div>
 </template>

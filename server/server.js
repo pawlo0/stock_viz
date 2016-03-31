@@ -121,6 +121,6 @@ Meteor.methods({
     if (inserts > 0) {logResult += "Made " + inserts + " inserts into the database. " + insertedSymbs;}
     if (updates > 0) {logResult += "Made " + updates + " updates. " + updatedSymbs;}
     if (inserts == 0 && updates == 0) { logResult = "No inserts nor updates were made.";}
-    return logResult; 
+    return logResult;
   }
 })

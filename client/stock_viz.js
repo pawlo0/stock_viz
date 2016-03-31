@@ -1,6 +1,5 @@
 /* global Stocks */
 
-Meteor.subscribe("stocks");
 var visjsobj;
 
 ////////////////////////////

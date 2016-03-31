@@ -17,7 +17,7 @@ Template.layout.helpers({
     "checkData": function (e) {
         if (Files.findOne()){
             if (!Stocks.findOne() || new Date() - Stocks.findOne().updatedAt > 30*24*60*60*1000) {
-                var url = Files.findOne().url();
+                var url = Meteor.absoluteUrl(Files.findOne().url());
                 var oReq = new XMLHttpRequest();
                 oReq.open("GET", url, true);
                 oReq.responseType = "arraybuffer";

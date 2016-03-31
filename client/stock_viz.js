@@ -1,4 +1,4 @@
-/* global Stocks */
+/* global Stocks, $ */
 
 var visjsobj;
 
@@ -144,6 +144,29 @@ Template.stock_fundamentals_list.events({
         return false; 
     }
 });
+
+Template.stock_groups.events({
+    "click #accordion a": function(event){
+        event.preventDefault();
+        var id = event.target.getAttribute("href");
+        $('#accordion').on('shown.bs.collapse', function () {
+            if($("#network").height() < $("#network h2").height() + $("#network .col-md-4").height() ){
+                $("#network").height($("#network h2").height() + $("#network .col-md-4").height());
+            }
+        });
+        $('#accordion').on('hidden.bs.collapse', function () {
+            if($("#network").height() > $("#network h2").height() + $("#network .col-md-4").height() +30 ){
+                $("#network").height($("#network h2").height() + $("#network .col-md-4").height() +30);
+            }
+            var el = $(id);
+            if (!el.visible()){
+                $('html, body').animate({
+                    scrollTop: el.offset().top - 100
+                }, 500);
+            }            
+        });        
+    }
+})
 
 
 // function that creates a new blobby visualisation
